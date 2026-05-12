@@ -103,11 +103,10 @@ Base path: **`/api`**
 The repo is configured for a **single Vercel project**: static files from `client/dist` and a **serverless** Express handler in `api/index.js` (see `vercel.json`).
 
 1. Connect the Git repository to [Vercel](https://vercel.com/) with the **repository root** as the project root (not `client` alone).
-2. Set environment variables in the Vercel dashboard (Production and Preview as needed):
-
-   - `MONGODB_URI`
-   - `JWT_SECRET`
-   - `CLIENT_URL` — your live site URL(s), e.g. `https://your-app.vercel.app` (comma-separated for preview + production)
+2. Set environment variables in the Vercel dashboard (**Production** and **Preview**).  
+   **Step-by-step list:** open repo file **`VERCEL-ENV-COPYPASTE.txt`** — you only **must** set **`MONGODB_URI`** and **`JWT_SECRET`**.  
+   **`CLIENT_URL`** is optional on Vercel: the API also allows your **`*.vercel.app`** deployment URLs and Vercel’s own `VERCEL_URL` / production URL. Use `CLIENT_URL` only for a **custom domain** (comma-separate multiple origins if needed).  
+   **Do not set `PORT`** on Vercel (unused). After changing env vars, **Redeploy**.
 
 3. In **Atlas → Network Access**, allow access from the internet for serverless (often `0.0.0.0/0` for development; tighten for production if you use fixed egress IPs).
 

@@ -1,0 +1,33 @@
+================================================================================
+VERCEL → Project → Settings → Environment Variables
+Set for "Production" and "Preview". Then: Deployments → … → Redeploy.
+================================================================================
+
+REQUIRED (only these 2 — you can delete PORT and CLIENT_URL from Vercel if you want)
+
+1) Name:  MONGODB_URI
+   Value:  Paste from MongoDB Atlas → your cluster → Connect → Drivers → Node.js.
+           Replace <password> with your DATABASE USER password.
+           If the password has @ # / etc., use Atlas’s “Edit password” / connection
+           helper so the URI is already URL-encoded.
+
+2) Name:  JWT_SECRET
+   Value:  Any long random string (64+ hex chars). Generate locally:
+           node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
+
+
+OPTIONAL
+
+3) Name:  CLIENT_URL
+   Value:  Only if you use a custom domain, e.g. https://shop.com
+           You can OMIT this for standard *.vercel.app deploys — the server
+           allows those automatically.
+
+DO NOT SET on Vercel:  PORT  (ignored for serverless; can cause confusion)
+
+
+If the site loads but APIs fail with "bad auth" / Mongo errors: the problem is
+almost always MONGODB_URI (wrong user, wrong password encoding, or typo).
+Atlas → Network Access: allow 0.0.0.0/0 (or Vercel) while testing.
+
+================================================================================

@@ -22,12 +22,56 @@ if (isVercel) {
   app.set('trust proxy', 1);
 }
 
-const corsOrigins = (process.env.CLIENT_URL?.split(',') ?? [])
-  .map((s) => s.trim())
-  .filter(Boolean);
+/** CORS: CLIENT_URL (comma-separated) + Vercel auto URLs + any *.vercel.app when running on Vercel */
+function allowedCorsOrigins() {
+  const fromEnv = (process.env.CLIENT_URL?.split(',') ?? [])
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const fromVercel = [];
+  if (process.env.VERCEL_URL) {
+    fromVercel.push(`https://${process.env.VERCEL_URL}`);
+  }
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    const u = process.env.VERCEL_PROJECT_PRODUCTION_URL.trim();
+    fromVercel.push(u.startsWith('http') ? u : `https://${u}`);
+  }
+  if (process.env.VERCEL_BRANCH_URL) {
+    fromVercel.push(`https://${process.env.VERCEL_BRANCH_URL}`);
+  }
+  return [...new Set([...fromEnv, ...fromVercel].filter(Boolean))];
+}
+
+const corsAllowedList = allowedCorsOrigins();
+
 app.use(
   cors({
-    origin: corsOrigins.length ? corsOrigins : true,
+    origin(origin, callback) {
+      if (!origin) {
+        callback(null, true);
+        return;
+      }
+      if (corsAllowedList.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+      if (isVercel) {
+        try {
+          const { hostname } = new URL(origin);
+          if (hostname.endsWith('.vercel.app')) {
+            callback(null, true);
+            return;
+          }
+        } catch {
+          callback(null, false);
+          return;
+        }
+      }
+      if (!isVercel && corsAllowedList.length === 0) {
+        callback(null, true);
+        return;
+      }
+      callback(null, false);
+    },
     credentials: true,
   })
 );
