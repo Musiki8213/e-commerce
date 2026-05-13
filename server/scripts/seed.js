@@ -5,8 +5,9 @@ import { User } from '../src/models/User.js';
 import { Category } from '../src/models/Category.js';
 import { Product } from '../src/models/Product.js';
 import { catalogCategories, catalogProducts } from './productsData.js';
+import { normalizeMongoUri } from '../src/config/db.js';
 
-const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/ecommerce';
+const uri = normalizeMongoUri(process.env.MONGODB_URI) || 'mongodb://127.0.0.1:27017/ecommerce';
 
 async function run() {
   await mongoose.connect(uri);
