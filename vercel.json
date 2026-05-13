@@ -7,7 +7,11 @@
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api" },
     { "source": "/uploads/:path*", "destination": "/api" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/:path*",
+      "destination": "/index.html",
+      "has": [{ "type": "header", "key": "accept", "value": ".*text/html.*" }]
+    }
   ],
   "functions": {
     "api/index.js": {
