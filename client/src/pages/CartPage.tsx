@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
+import { ProductImage } from '@/components/product/ProductImage'
 import { useCart } from '@/context/CartContext'
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -33,11 +34,10 @@ export function CartPage() {
             <Card key={line.product._id}>
               <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center">
                 <Link to={`/products/${line.product._id}`} className="shrink-0">
-                  <img
-                    src={line.product.images[0] || '/placeholder.svg'}
+                  <ProductImage
+                    src={line.product.images[0]}
                     alt=""
                     className="h-28 w-28 rounded-lg object-cover"
-                    referrerPolicy="no-referrer"
                   />
                 </Link>
                 <div className="min-w-0 flex-1">
