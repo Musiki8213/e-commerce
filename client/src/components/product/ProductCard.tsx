@@ -1,3 +1,4 @@
+import { ProductImage } from '@/components/product/ProductImage'
 import { useCart } from '@/context/CartContext'
 import { useWishlist } from '@/context/WishlistContext'
 import type { Product } from '@/types'
@@ -10,19 +11,18 @@ import { cn } from '@/lib/utils'
 export function ProductCard({ product, className }: { product: Product; className?: string }) {
   const { add } = useCart()
   const { toggle, has } = useWishlist()
-  const img = product.images[0] || '/placeholder.svg'
+  const img = product.images[0]
   const cat = typeof product.category === 'object' ? product.category.name : ''
 
   return (
     <Card className={cn('group overflow-hidden border-border/60', className)}>
       <div className="relative aspect-[4/5] overflow-hidden bg-muted">
         <Link to={`/products/${product._id}`}>
-          <img
+          <ProductImage
             src={img}
             alt={product.title}
             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
             loading="lazy"
-            referrerPolicy="no-referrer"
           />
         </Link>
         <button

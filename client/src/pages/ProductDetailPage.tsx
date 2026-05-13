@@ -1,4 +1,5 @@
 import api from '@/api/client'
+import { ProductImage } from '@/components/product/ProductImage'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Skeleton } from '@/components/ui/Skeleton'
@@ -11,6 +12,7 @@ import { Heart, Minus, Plus, ShoppingBag, Star } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ProductCard } from '@/components/product/ProductCard'
+import { productImageUrl } from '@/lib/productImageUrl'
 import toast from 'react-hot-toast'
 
 export function ProductDetailPage() {
@@ -83,20 +85,21 @@ export function ProductDetailPage() {
     )
   }
 
-  const img = mainImage || product.images[0] || '/placeholder.svg'
+  const mainSrc = mainImage || product.images[0] || '/placeholder.svg'
+  const img = productImageUrl(mainSrc)
   const cat = typeof product.category === 'object' ? product.category.name : ''
   const gallery = product.images.filter(Boolean)
+  const thumbActive = (src: string) => productImageUrl(src) === img
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="grid gap-10 lg:grid-cols-2">
         <div className="space-y-4">
           <div className="overflow-hidden rounded-2xl border border-border bg-muted shadow-card">
-            <img
-              src={img}
+            <ProductImage
+              src={mainSrc}
               alt={product.title}
               className="aspect-square w-full object-cover"
-              referrerPolicy="no-referrer"
             />
           </div>
           {gallery.length > 1 && (
@@ -106,16 +109,11 @@ export function ProductDetailPage() {
                   type="button"
                   key={`${src}-${idx}`}
                   className={`overflow-hidden rounded-lg border ${
-                    src === img ? 'border-accent ring-2 ring-accent/30' : 'border-border'
+                    thumbActive(src) ? 'border-accent ring-2 ring-accent/30' : 'border-border'
                   }`}
                   onClick={() => setMainImage(src)}
                 >
-                  <img
-                    src={src}
-                    alt=""
-                    className="aspect-square w-full object-cover opacity-80 hover:opacity-100"
-                    referrerPolicy="no-referrer"
-                  />
+                  <ProductImage src={src} alt="" className="aspect-square w-full object-cover opacity-80 hover:opacity-100" />
                 </button>
               ))}
             </div>
