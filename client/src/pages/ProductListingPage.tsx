@@ -210,12 +210,12 @@ export function ProductListingPage() {
         </Button>
       </div>
 
-      <div className="mt-8 flex gap-10">
+      <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:gap-10">
         <aside
           id={SHOP_FILTERS_ID}
           className={`${
-            mobileFilters ? 'flex' : 'hidden'
-          } w-full shrink-0 lg:flex lg:w-64 lg:flex-col`}
+            mobileFilters ? 'block' : 'hidden'
+          } w-full shrink-0 lg:block lg:w-64`}
         >
           <div className="sticky top-24 rounded-lg border border-border bg-card p-5 shadow-card">
             <p className="text-base font-semibold">Filters</p>

@@ -41,7 +41,7 @@ export function ProductCard({ product, className }: { product: Product; classNam
       </div>
       <CardContent className="space-y-3 p-4">
         <div className="flex items-start justify-between gap-2">
-          <div>
+          <div className="min-w-0 flex-1">
             <p className="text-xs uppercase tracking-wider text-muted-foreground">{cat}</p>
             <Link to={`/products/${product._id}`}>
               <h3 className="mt-1 line-clamp-2 font-medium leading-snug hover:text-accent">{product.title}</h3>

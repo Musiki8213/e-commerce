@@ -11,9 +11,10 @@ export function Pagination({
 }) {
   if (pages <= 1) return null
   return (
-    <div className="flex items-center justify-center gap-2 pt-8">
+    <div className="flex flex-wrap items-center justify-center gap-2 pt-8">
       <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => onChange(page - 1)}>
-        Previous
+        <span className="hidden sm:inline">Previous</span>
+        <span className="sm:hidden">Prev</span>
       </Button>
       <span className="text-sm text-muted-foreground">
         Page {page} of {pages}

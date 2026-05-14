@@ -124,11 +124,11 @@ export function ProductDetailPage() {
           <div>
             <p className="text-sm uppercase tracking-wider text-muted-foreground">{cat}</p>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{product.title}</h1>
-            <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
-              <Star className="h-5 w-5 fill-amber-400 text-amber-400" />
+            <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+              <Star className="h-5 w-5 shrink-0 fill-amber-400 text-amber-400" />
               <span className="font-medium text-foreground">{(product.rating || 0).toFixed(1)}</span>
               <span>({product.numReviews} reviews)</span>
-              <span className="text-border">|</span>
+              <span className="hidden text-border sm:inline">|</span>
               <span>{product.stock} in stock</span>
             </div>
           </div>
@@ -154,7 +154,7 @@ export function ProductDetailPage() {
             <Button
               variant="accent"
               size="lg"
-              className="gap-2"
+              className="min-h-11 flex-1 gap-2 sm:flex-initial"
               disabled={product.stock < 1}
               onClick={() => {
                 add(product, qty)
@@ -164,7 +164,13 @@ export function ProductDetailPage() {
               <ShoppingBag className="h-5 w-5" />
               Add to cart
             </Button>
-            <Button type="button" variant="outline" size="lg" onClick={() => toggle(product)}>
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              className="min-h-11 shrink-0"
+              onClick={() => toggle(product)}
+            >
               <Heart className={has(product._id) ? 'h-5 w-5 fill-accent text-accent' : 'h-5 w-5'} />
             </Button>
           </div>
