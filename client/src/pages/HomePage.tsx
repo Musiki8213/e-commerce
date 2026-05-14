@@ -63,12 +63,15 @@ export function HomePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between gap-4">
-          <div>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+          <div className="min-w-0">
             <h2 className="text-2xl font-semibold tracking-tight">Featured picks</h2>
             <p className="mt-1 text-sm text-muted-foreground">Curated from our catalog.</p>
           </div>
-          <Link to="/products" className="text-sm font-medium text-accent hover:underline">
+          <Link
+            to="/products"
+            className="shrink-0 text-sm font-medium text-accent hover:underline sm:self-end"
+          >
             View all
           </Link>
         </div>
