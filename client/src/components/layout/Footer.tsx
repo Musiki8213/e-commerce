@@ -12,7 +12,7 @@ export function Footer() {
             Premium athletic essentials. Crafted for motion, designed for the city.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <p className="text-sm font-semibold">Shop</p>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">

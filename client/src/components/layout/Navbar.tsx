@@ -175,11 +175,11 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-4 sm:gap-4 sm:px-6 lg:px-8">
         {/* Logo — SHOPERA-style bag + wordmark (colors unchanged: accent + foreground tokens) */}
         <div className="flex min-w-0 shrink-0 items-center gap-2">
           <ShoppingBag className="h-6 w-6 shrink-0 text-accent" aria-hidden />
-          <Link to="/" className="text-lg font-bold tracking-tight text-foreground sm:text-xl">
+          <Link to="/" className="min-w-0 truncate text-lg font-bold tracking-tight text-foreground sm:text-xl">
             MS<span className="text-accent">.</span>
           </Link>
         </div>
@@ -188,7 +188,7 @@ export function Navbar() {
         <nav className="hidden flex-1 items-center justify-center gap-6 md:flex lg:gap-8">{centerNav}</nav>
 
         {/* Right utilities */}
-        <div className="ml-auto flex items-center gap-1 sm:gap-2">
+        <div className="ml-auto flex min-w-0 items-center gap-0.5 sm:gap-2">
           <div className="relative hidden sm:block" ref={searchRef}>
             <Button
               type="button"
