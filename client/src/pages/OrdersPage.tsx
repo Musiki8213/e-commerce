@@ -51,11 +51,11 @@ export function OrdersPage() {
               </div>
               <ul className="space-y-2 text-sm">
                 {o.items.map((it, idx) => (
-                  <li key={idx} className="flex justify-between text-muted-foreground">
-                    <span>
+                  <li key={idx} className="flex gap-3 text-muted-foreground">
+                    <span className="min-w-0 flex-1 break-words">
                       {it.title} × {it.quantity}
                     </span>
-                    <span>${(it.price * it.quantity).toFixed(2)}</span>
+                    <span className="shrink-0 tabular-nums">${(it.price * it.quantity).toFixed(2)}</span>
                   </li>
                 ))}
               </ul>

@@ -22,9 +22,9 @@ export function CartPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <h1 className="text-3xl font-semibold tracking-tight">Cart</h1>
-        <Button variant="ghost" onClick={clear}>
+        <Button variant="ghost" className="self-start sm:self-auto" onClick={clear}>
           Clear cart
         </Button>
       </div>
@@ -72,7 +72,7 @@ export function CartPage() {
                     </Button>
                   </div>
                 </div>
-                <div className="text-right text-lg font-semibold">
+                <div className="w-full text-left text-lg font-semibold sm:w-auto sm:text-right">
                   ${(line.product.price * line.quantity).toFixed(2)}
                 </div>
               </CardContent>

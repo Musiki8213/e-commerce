@@ -141,11 +141,12 @@ export function CheckoutPage() {
           </CardHeader>
           <CardContent className="space-y-3">
             {items.map((i) => (
-              <div key={i.product._id} className="flex justify-between text-sm">
-                <span className="text-muted-foreground">
-                  {i.product.title} × {i.quantity}
+              <div key={i.product._id} className="flex gap-3 text-sm">
+                <span className="min-w-0 flex-1 text-muted-foreground">
+                  <span className="line-clamp-2 break-words">{i.product.title}</span>
+                  <span className="text-foreground"> × {i.quantity}</span>
                 </span>
-                <span>${(i.product.price * i.quantity).toFixed(2)}</span>
+                <span className="shrink-0 tabular-nums font-medium">${(i.product.price * i.quantity).toFixed(2)}</span>
               </div>
             ))}
             <div className="border-t border-border pt-3 text-lg font-semibold">

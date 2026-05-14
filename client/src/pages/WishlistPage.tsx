@@ -20,9 +20,9 @@ export function WishlistPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <h1 className="text-3xl font-semibold tracking-tight">Wishlist</h1>
-        <Button variant="outline" onClick={clear}>
+        <Button variant="outline" className="w-full shrink-0 sm:w-auto" onClick={clear}>
           Clear all
         </Button>
       </div>
