@@ -111,13 +111,13 @@ export function DashboardPage() {
               </form>
             ) : (
               <>
-                <div className="flex justify-between">
+                <div className="flex justify-between gap-3">
                   <span className="text-muted-foreground">Name</span>
-                  <span className="font-medium">{user?.name}</span>
+                  <span className="max-w-[60%] text-right font-medium break-words">{user?.name}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Email</span>
-                  <span className="font-medium">{user?.email}</span>
+                <div className="flex justify-between gap-3">
+                  <span className="shrink-0 text-muted-foreground">Email</span>
+                  <span className="min-w-0 max-w-[65%] text-right font-medium break-all">{user?.email}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Role</span>

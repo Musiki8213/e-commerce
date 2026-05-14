@@ -15,7 +15,7 @@ export function AdminDashboardPage() {
 
   if (!stats) {
     return (
-      <div className="mx-auto max-w-7xl space-y-4 p-8">
+      <div className="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:p-8">
         <Skeleton className="h-10 w-64" />
         <div className="grid gap-4 md:grid-cols-4">
           {Array.from({ length: 4 }).map((_, i) => (
@@ -71,8 +71,8 @@ export function AdminDashboardPage() {
       <div className="mt-10">
         <h2 className="text-xl font-semibold">Top products</h2>
         <Card className="mt-4">
-          <CardContent className="p-0">
-            <table className="w-full text-sm">
+          <CardContent className="overflow-x-auto p-0">
+            <table className="w-full min-w-[520px] text-sm">
               <thead className="border-b border-border bg-muted/40 text-left text-muted-foreground">
                 <tr>
                   <th className="p-3 font-medium">Product</th>

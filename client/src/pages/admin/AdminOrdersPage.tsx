@@ -30,7 +30,7 @@ export function AdminOrdersPage() {
 
   if (!orders) {
     return (
-      <div className="mx-auto max-w-5xl space-y-4 p-8">
+      <div className="mx-auto max-w-5xl space-y-4 px-4 py-8 sm:p-8">
         <Skeleton className="h-10 w-48" />
         <Skeleton className="h-40 w-full" />
       </div>
@@ -51,7 +51,7 @@ export function AdminOrdersPage() {
               <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <CardTitle className="text-base">#{o._id.slice(-8).toUpperCase()}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="break-words text-sm text-muted-foreground">
                     {new Date(o.createdAt).toLocaleString()}
                     {u && ` · ${u.name || ''} (${u.email || ''})`}
                   </p>
@@ -73,11 +73,11 @@ export function AdminOrdersPage() {
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
                 {o.items.map((it, idx) => (
-                  <div key={idx} className="flex justify-between text-muted-foreground">
-                    <span>
+                  <div key={idx} className="flex gap-3 text-muted-foreground">
+                    <span className="min-w-0 flex-1 break-words">
                       {it.title} × {it.quantity}
                     </span>
-                    <span>${(it.price * it.quantity).toFixed(2)}</span>
+                    <span className="shrink-0 tabular-nums">${(it.price * it.quantity).toFixed(2)}</span>
                   </div>
                 ))}
                 <div className="flex justify-between border-t border-border pt-2 font-semibold">

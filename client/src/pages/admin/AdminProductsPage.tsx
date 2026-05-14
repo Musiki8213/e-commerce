@@ -112,7 +112,7 @@ export function AdminProductsPage() {
 
   if (loading) {
     return (
-      <div className="mx-auto max-w-7xl space-y-4 p-8">
+      <div className="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:p-8">
         <Skeleton className="h-10 w-64" />
         <Skeleton className="h-64 w-full" />
       </div>
